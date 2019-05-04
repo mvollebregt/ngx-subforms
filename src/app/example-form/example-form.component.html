@@ -1,0 +1,6 @@
+<form [formGroup]="formGroup">
+  <app-example-form-group-control formControlName="formGroupControlValue">
+  </app-example-form-group-control>
+</form>
+
+{{ formGroup.value | json }}
