@@ -29,6 +29,10 @@ export class AbstractFormGroupControl implements ControlValueAccessor {
   }
 
   writeValue(obj: any): void {
+    if (obj) {
+      // TODO: what should happen if !obj?
+      this.formGroup.setValue(obj);
+    }
   }
 
   private registerValueChangesWithOnChange() {
@@ -37,6 +41,7 @@ export class AbstractFormGroupControl implements ControlValueAccessor {
     }
     if (this.formGroup && this.onChange) {
       this.valueChangesSubscription = this.formGroup.valueChanges.subscribe(this.onChange);
+      // TODO: unsubscribe on destroy
     }
   }
 }

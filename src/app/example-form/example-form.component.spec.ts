@@ -30,11 +30,20 @@ describe('ExampleFormComponent', () => {
 
   describe('after entering a value in the form', () => {
 
-    it('should reflect a text input value', () => {
+    it('should have the value of a text input', () => {
       textInput.value = 'text value';
       textInput.dispatchEvent(new Event('input'));
       expect(component.formGroup.value).toEqual({formGroupControlValue: {text: 'text value'}});
     });
 
+  });
+
+  describe('after setting the value programmatically', () => {
+
+    it('should display a text value', () => {
+      component.formGroup.setValue({formGroupControlValue: {text: 'text value'}});
+      fixture.detectChanges();
+      expect(textInput.value).toBe('text value');
+    });
   });
 });
