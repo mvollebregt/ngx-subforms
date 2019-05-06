@@ -1,8 +1,9 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {ExampleFormComponent} from './example-form.component';
-import {ExampleFormGroupControlComponent} from '../example-form-group-control/example-form-group-control.component';
+import {ExampleSubformComponent} from '../example-subform/example-subform.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {SubformComponent} from '../subform/subform.component';
 
 describe('ExampleFormComponent', () => {
   let component: ExampleFormComponent;
@@ -11,7 +12,7 @@ describe('ExampleFormComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ExampleFormComponent, ExampleFormGroupControlComponent],
+      declarations: [ExampleFormComponent, ExampleSubformComponent, SubformComponent],
       imports: [ReactiveFormsModule]
     })
       .compileComponents();

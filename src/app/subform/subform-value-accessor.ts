@@ -1,19 +1,15 @@
 import {ControlValueAccessor, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-export class AbstractFormGroupControl implements ControlValueAccessor {
+export class SubformValueAccessor implements ControlValueAccessor {
 
-  private _formGroup: FormGroup;
+  private formGroup: FormGroup;
   private onChange: any;
   private onTouched: any;
   private valueChangesSubscription: Subscription;
 
-  get formGroup(): FormGroup {
-    return this._formGroup;
-  }
-
-  set formGroup(formGroup: FormGroup) {
-    this._formGroup = formGroup;
+  setFormGroup(formGroup: FormGroup) {
+    this.formGroup = formGroup;
     this.registerValueChangesWithOnChange();
   }
 
@@ -23,6 +19,7 @@ export class AbstractFormGroupControl implements ControlValueAccessor {
   }
 
   registerOnTouched(fn: any): void {
+    this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
