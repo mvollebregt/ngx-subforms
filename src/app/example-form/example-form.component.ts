@@ -14,7 +14,7 @@ export class ExampleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      formGroupControlValue: []
+      subformValue: []
     });
   }
 }

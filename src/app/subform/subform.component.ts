@@ -1,4 +1,4 @@
-import {Component, ElementRef, Inject, Input, OnChanges, QueryList, SimpleChanges, ViewChildren} from '@angular/core';
+import {AfterViewInit, Component, ContentChildren, ElementRef, Inject, Input, OnChanges, QueryList, SimpleChanges} from '@angular/core';
 import {FormControlName, FormGroup, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {SubformValueAccessor} from './subform-value-accessor';
 
@@ -6,18 +6,18 @@ import {SubformValueAccessor} from './subform-value-accessor';
   selector: 'sf-subform',
   templateUrl: './subform.component.html'
 })
-export class SubformComponent implements OnChanges {
+export class SubformComponent implements OnChanges, AfterViewInit {
 
   @Input() formGroup: FormGroup;
 
-  @ViewChildren(FormControlName, {read: ElementRef}) formControls: QueryList<ElementRef>;
+  @ContentChildren(FormControlName, {read: ElementRef}) formControls: QueryList<ElementRef>;
 
   private valueAccessor: SubformValueAccessor;
 
   constructor(
     @Inject(NG_VALUE_ACCESSOR) valueAccessors: SubformValueAccessor[]) {
-    [this.valueAccessor] = valueAccessors;
     // TODO: check that the correct value accessor is provided
+    [this.valueAccessor] = valueAccessors;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -25,4 +25,10 @@ export class SubformComponent implements OnChanges {
       this.valueAccessor.setFormGroup(changes.formGroup.currentValue);
     }
   }
+
+  ngAfterViewInit(): void {
+    // TODO: listen for changes on formControls?
+    this.valueAccessor.setFormControls(this.formControls.toArray());
+  }
+
 }

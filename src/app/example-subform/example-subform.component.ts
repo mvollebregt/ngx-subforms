@@ -10,7 +10,7 @@ import {useAsSubform} from '../subform/subform';
 })
 export class ExampleSubformComponent implements OnInit {
 
-  private formGroup: FormGroup;
+  formGroup: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
   }

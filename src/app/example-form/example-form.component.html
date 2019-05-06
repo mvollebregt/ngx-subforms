@@ -1,6 +1,7 @@
 <form [formGroup]="formGroup">
-  <sf-example-subform formControlName="formGroupControlValue">
+  <sf-example-subform formControlName="subformValue">
   </sf-example-subform>
 </form>
 
 {{ formGroup.value | json }}
+{{ formGroup.touched }}

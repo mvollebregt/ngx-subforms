@@ -34,7 +34,7 @@ describe('ExampleFormComponent', () => {
     it('should have the value of a text input', () => {
       textInput.value = 'text value';
       textInput.dispatchEvent(new Event('input'));
-      expect(component.formGroup.value).toEqual({formGroupControlValue: {text: 'text value'}});
+      expect(component.formGroup.value).toEqual({subformValue: {text: 'text value'}});
     });
 
   });
@@ -42,9 +42,19 @@ describe('ExampleFormComponent', () => {
   describe('after setting the value programmatically', () => {
 
     it('should display a text value', () => {
-      component.formGroup.setValue({formGroupControlValue: {text: 'text value'}});
+      component.formGroup.setValue({subformValue: {text: 'text value'}});
       fixture.detectChanges();
       expect(textInput.value).toBe('text value');
     });
   });
+
+  describe('after touching the form', () => {
+
+    it('should have status touched', () => {
+      textInput.dispatchEvent(new Event('focus'));
+      expect(component.formGroup.touched).toBeTruthy();
+    });
+
+  });
+
 });

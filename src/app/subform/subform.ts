@@ -1,10 +1,11 @@
 import {NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Provider} from '@angular/core';
+import {Provider, Renderer2} from '@angular/core';
 import {SubformValueAccessor} from './subform-value-accessor';
 
 export const subform: Provider = {
   provide: NG_VALUE_ACCESSOR,
   useClass: SubformValueAccessor,
+  deps: [Renderer2],
   multi: true
 };
 

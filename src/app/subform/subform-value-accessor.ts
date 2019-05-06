@@ -1,5 +1,6 @@
 import {ControlValueAccessor, FormGroup} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {ElementRef, Renderer2} from '@angular/core';
 
 export class SubformValueAccessor implements ControlValueAccessor {
 
@@ -8,9 +9,18 @@ export class SubformValueAccessor implements ControlValueAccessor {
   private onTouched: any;
   private valueChangesSubscription: Subscription;
 
+  constructor(private renderer: Renderer2) {
+  }
+
   setFormGroup(formGroup: FormGroup) {
     this.formGroup = formGroup;
     this.registerValueChangesWithOnChange();
+  }
+
+  setFormControls(formControls: ElementRef[]) {
+    formControls.forEach(control => {
+      this.renderer.listen(control.nativeElement, 'focus', this.onTouched);
+    });
   }
 
   registerOnChange(fn: any): void {
