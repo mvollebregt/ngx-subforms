@@ -6,13 +6,21 @@ import {ExampleSubformComponent} from './example-subform/example-subform.compone
 import {ExampleFormComponent} from './example-form/example-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {SubformComponent} from './subform/subform.component';
+import {SingleFormComponent} from './single-form/single-form.component';
+import {SplitFormComponent} from './split-form/split-form.component';
+import {NameComponent} from './name/name.component';
+import {AddressComponent} from './address/address.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExampleSubformComponent,
     ExampleFormComponent,
-    SubformComponent
+    SubformComponent,
+    SingleFormComponent,
+    SplitFormComponent,
+    NameComponent,
+    AddressComponent
 
   ],
   imports: [
