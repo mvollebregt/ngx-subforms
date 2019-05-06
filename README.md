@@ -70,7 +70,7 @@ export class SingleFormComponent implements OnInit {
 There are a number of ways to 
 [implement nested forms](https://blog.angularindepth.com/angular-nested-reactive-forms-using-cvas-b394ba2e5d0d).
 The best way to use a component as a subform is to define it as a custom form
-control. This way, it will be part of you larger form. If you set the value of
+control. This way, it will be part of your larger form. If you set the value of
 the whole form, the fields in your subform will automatically be set with it.
 Also, validation will work for the whole form, including your subform. 
 
@@ -107,14 +107,14 @@ that for your own exercise.
 
 To create a subform component, you have to do three things:
 
-- wrap your inputs in an <sf-subform> tag;
+- wrap your inputs in an &lt;sf-subform&gt; tag;
 - tell angular you'd like to use it as a subform;
 - use the subform component.
 
-### 1. Wrap your inputs in an <sf-subform> tag
+### 1. Wrap your inputs in an &lt;sf-subform&gt; tag
 
 The html for your subform component is the same as the original html, but
-wrapped in an <sf-subform> tag.
+wrapped in an &lt;sf-subform&gt; tag.
 
 ```html
 <sf-subform [formGroup]="name">
