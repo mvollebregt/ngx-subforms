@@ -1,13 +1,26 @@
-import {NG_VALUE_ACCESSOR} from '@angular/forms';
+import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {Provider, Renderer2} from '@angular/core';
+import {SubformImplementation} from './subform-implementation';
 import {SubformValueAccessor} from './subform-value-accessor';
+import {SubformValidator} from './subform-validator';
 
-export const subform: Provider = {
+export const subform: Provider = [{
+  provide: SubformImplementation,
+  useClass: SubformImplementation,
+  deps: [Renderer2],
+}, {
   provide: NG_VALUE_ACCESSOR,
   useClass: SubformValueAccessor,
-  deps: [Renderer2],
+  deps: [SubformImplementation],
   multi: true
-};
+},
+  {
+    provide: NG_VALIDATORS,
+    useClass: SubformValidator,
+    deps: [SubformImplementation],
+  multi: true
+  }
+];
 
 export const useAsSubform = {providers: [subform]};
 

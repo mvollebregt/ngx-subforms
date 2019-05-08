@@ -34,7 +34,8 @@ describe('ExampleFormComponent', () => {
     it('should have the value of a text input', () => {
       textInput.value = 'text value';
       textInput.dispatchEvent(new Event('input'));
-      expect(component.formGroup.value).toEqual({subformValue: {text: 'text value'}});
+      // TODO: patchValue does not work here. Does it work for a single form with groups?
+      expect(component.formGroup.value).toEqual({subformValue: {requiredText: '', text: 'text value'}});
     });
 
   });
@@ -42,7 +43,8 @@ describe('ExampleFormComponent', () => {
   describe('after setting the value programmatically', () => {
 
     it('should display a text value', () => {
-      component.formGroup.setValue({subformValue: {text: 'text value'}});
+      // TODO: patchValue does not work here. Does it work for a single form with groups?
+      component.formGroup.setValue({subformValue: {requiredText: '', text: 'text value'}});
       fixture.detectChanges();
       expect(textInput.value).toBe('text value');
     });
@@ -56,5 +58,23 @@ describe('ExampleFormComponent', () => {
     });
 
   });
+
+  describe('inner validation', () => {
+
+    it('should return an error if validation fails', () => {
+      // TODO: patchValue does not work here. Does it work for a single form with groups?
+      component.formGroup.setValue({subformValue: {text: '', requiredText: ''}});
+      expect(component.formGroup.valid).toBeFalsy();
+    });
+
+    it('should not return an error if validation success', () => {
+      // TODO: patchValue does not work here. Does it work for a single form with groups?
+      component.formGroup.setValue({subformValue: {text: '', requiredText: 'required'}});
+      expect(component.formGroup.valid).toBeTruthy();
+
+    });
+  });
+
+
 
 });

@@ -1,54 +1,24 @@
-import {ControlValueAccessor, FormGroup} from '@angular/forms';
-import {Subscription} from 'rxjs';
-import {ElementRef, Renderer2} from '@angular/core';
+import {ControlValueAccessor} from '@angular/forms';
+import {SubformImplementation} from './subform-implementation';
 
 export class SubformValueAccessor implements ControlValueAccessor {
 
-  private formGroup: FormGroup;
-  private onChange: any;
-  private onTouched: any;
-  private valueChangesSubscription: Subscription;
-
-  constructor(private renderer: Renderer2) {
-  }
-
-  setFormGroup(formGroup: FormGroup) {
-    this.formGroup = formGroup;
-    this.registerValueChangesWithOnChange();
-  }
-
-  setFormControls(formControls: ElementRef[]) {
-    formControls.forEach(control => {
-      this.renderer.listen(control.nativeElement, 'focus', this.onTouched);
-    });
+  constructor(private subformImplementation: SubformImplementation) {
   }
 
   registerOnChange(fn: any): void {
-    this.onChange = fn;
-    this.registerValueChangesWithOnChange();
+    this.subformImplementation.registerOnChange(fn);
   }
 
   registerOnTouched(fn: any): void {
-    this.onTouched = fn;
+    this.subformImplementation.registerOnTouched(fn);
   }
 
   setDisabledState(isDisabled: boolean): void {
+    this.subformImplementation.setDisabledState(isDisabled);
   }
 
   writeValue(obj: any): void {
-    if (obj) {
-      // TODO: what should happen if !obj?
-      this.formGroup.setValue(obj);
-    }
-  }
-
-  private registerValueChangesWithOnChange() {
-    if (this.valueChangesSubscription) {
-      this.valueChangesSubscription.unsubscribe();
-    }
-    if (this.formGroup && this.onChange) {
-      this.valueChangesSubscription = this.formGroup.valueChanges.subscribe(this.onChange);
-      // TODO: unsubscribe on destroy
-    }
+    this.subformImplementation.writeValue(obj);
   }
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {useAsSubform} from '../subform/subform';
 
 
@@ -17,7 +17,8 @@ export class ExampleSubformComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      text: []
+      text: [],
+      requiredText: ['', Validators.required]
     });
   }
 }
