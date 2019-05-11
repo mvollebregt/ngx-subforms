@@ -29,7 +29,8 @@ runTests(testSetup => {
   });
 
   it('should display the correct value after setting the value for the name field programmatically', () => {
-    component.formGroup.patchValue({name: {firstName: 'my first name'}});
+    // With patchValue, I also HAVE to provide the last name, which is different from the single form. TODO: document this
+    component.formGroup.patchValue({name: {firstName: 'my first name', lastName: ''}});
     fixture.detectChanges();
     expect(firstName.value).toBe('my first name');
   });
@@ -40,12 +41,12 @@ runTests(testSetup => {
   });
 
   it('should return an error if an empty value was given for a required last name field', () => {
-    component.formGroup.patchValue({name: {lastName: ''}});
+    component.formGroup.patchValue({name: {firstName: '', lastName: ''}});
     expect(component.formGroup.valid).toBeFalsy();
   });
 
   it('should not return an error if a valid value was given for a required last name field', () => {
-    component.formGroup.patchValue({name: {lastName: 'non empty'}});
+    component.formGroup.patchValue({name: {firstName: '', lastName: 'non empty'}});
     expect(component.formGroup.valid).toBeTruthy();
   });
 

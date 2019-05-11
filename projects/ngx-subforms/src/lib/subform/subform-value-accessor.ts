@@ -47,7 +47,18 @@ export class SubformValueAccessor implements ControlValueAccessor, Validator {
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
-    return this.formGroup && this.formGroup.valid ? null : {invalidForm: {valid: false, message: 'foei'}};
+    const allErrors = {};
+    if (this.formGroup) {
+      // TODO: recursive?
+      for (const key of Object.keys(this.formGroup.controls)) {
+        const errors = this.formGroup.controls[key].errors;
+        if (errors) {
+          allErrors[key] = errors;
+        }
+      }
+    }
+    // TODO: what if !this.formGroup?
+    return !this.formGroup || this.formGroup.valid ? null : {invalidForm: allErrors};
   }
 
   private registerValueChangesWithOnChange() {
