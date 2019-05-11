@@ -3,7 +3,7 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {ExampleFormComponent} from './example-form.component';
 import {ExampleSubformComponent} from '../example-subform/example-subform.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SubformComponent} from '../subform/subform.component';
+import {SubformComponent} from 'ngx-subforms';
 
 describe('ExampleFormComponent', () => {
   let component: ExampleFormComponent;

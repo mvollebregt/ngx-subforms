@@ -4,7 +4,7 @@ import {SubformValueAccessor} from './subform-value-accessor';
 
 @Component({
   selector: 'sf-subform',
-  templateUrl: './subform.component.html'
+  template: '<ng-content></ng-content>'
 })
 export class SubformComponent implements OnChanges, AfterViewInit {
 

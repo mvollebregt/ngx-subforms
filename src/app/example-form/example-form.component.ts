@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'sf-example-form',
+  selector: 'app-example-form',
   templateUrl: './example-form.component.html'
 })
 export class ExampleFormComponent implements OnInit {
@@ -14,7 +14,8 @@ export class ExampleFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.formGroup = this.formBuilder.group({
-      subformValue: ['']
+      // TODO: subformValidator maken, waarin ik andere validators kan wrappen maar dan voor een subform
+      subformValue: [''] // , () => ({parent: 'deze fout komt van de parent'})]
     });
   }
 }

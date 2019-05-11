@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
-  selector: 'sf-single-form',
+  selector: 'app-single-form',
   template: `
     <form [formGroup]="contactInformationForm">
 
@@ -20,6 +20,8 @@ import {FormBuilder, FormGroup} from '@angular/forms';
       </ng-container>
 
     </form>
+
+    {{ contactInformationForm.touched }}
   `
 })
 export class SingleFormComponent implements OnInit {
@@ -32,7 +34,7 @@ export class SingleFormComponent implements OnInit {
   ngOnInit() {
     this.contactInformationForm = this.formBuilder.group({
       name: this.formBuilder.group({
-        firstName: [],
+        firstName: ['a', [Validators.required, Validators.minLength(3)]],
         lastName: []
       }),
       address: this.formBuilder.group({
@@ -43,5 +45,6 @@ export class SingleFormComponent implements OnInit {
         country: []
       })
     });
+    // console.log(this.contactInformationForm.get(['name', 'firstName']).errors);
   }
 }

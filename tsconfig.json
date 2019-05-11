@@ -17,6 +17,14 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ngx-subforms": [
+        "dist/ngx-subforms"
+      ],
+      "ngx-subforms/*": [
+        "dist/ngx-subforms/*"
+      ]
+    }
   }
 }

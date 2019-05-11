@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {useAsSubform} from '../subform/subform-provider';
+import {useAsSubform} from 'ngx-subforms';
 
 @Component({
-  selector: 'sf-name',
+  selector: 'app-name',
   templateUrl: './name.component.html',
   ...useAsSubform
 })

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "form-group-control": {
+    "ngx-subforms-example": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -12,12 +12,12 @@
       },
       "root": "",
       "sourceRoot": "src",
-      "prefix": "app",
+      "prefix": "sfx",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/form-group-control",
+            "outputPath": "dist/ngx-subforms-example",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -61,18 +61,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "form-group-control:build"
+            "browserTarget": "ngx-subforms-example:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "form-group-control:build:production"
+              "browserTarget": "ngx-subforms-example:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "form-group-control:build"
+            "browserTarget": "ngx-subforms-example:build"
           }
         },
         "test": {
@@ -109,15 +109,50 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "form-group-control:serve"
+            "devServerTarget": "ngx-subforms-example:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "form-group-control:serve:production"
+              "devServerTarget": "ngx-subforms-example:serve:production"
             }
           }
         }
       }
+    },
+    "ngx-subforms": {
+      "projectType": "library",
+      "root": "projects/ngx-subforms",
+      "sourceRoot": "projects/ngx-subforms/src",
+      "prefix": "sf",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-subforms/tsconfig.lib.json",
+            "project": "projects/ngx-subforms/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-subforms/src/test.ts",
+            "tsConfig": "projects/ngx-subforms/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-subforms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-subforms/tsconfig.lib.json",
+              "projects/ngx-subforms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
-  "defaultProject": "form-group-control"
+  "defaultProject": "ngx-subforms-example"
 }

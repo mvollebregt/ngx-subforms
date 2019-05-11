@@ -2,11 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
-  selector: 'sf-split-form',
+  selector: 'app-split-form',
   template: `
     <form [formGroup]="contactInformationForm">
-      <sf-name formControlName="name"></sf-name>
-      <sf-address formControlName="address"></sf-address>
+      <app-name formControlName="name"></app-name>
+      <app-address formControlName="address"></app-address>
     </form>
   `
 })

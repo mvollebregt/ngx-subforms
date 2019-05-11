@@ -5,18 +5,17 @@ import {AppComponent} from './app.component';
 import {ExampleSubformComponent} from './example-subform/example-subform.component';
 import {ExampleFormComponent} from './example-form/example-form.component';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SubformComponent} from './subform/subform.component';
 import {SingleFormComponent} from './single-form/single-form.component';
 import {SplitFormComponent} from './split-form/split-form.component';
 import {NameComponent} from './name/name.component';
 import {AddressComponent} from './address/address.component';
+import {SubformsModule} from 'ngx-subforms';
 
 @NgModule({
   declarations: [
     AppComponent,
     ExampleSubformComponent,
     ExampleFormComponent,
-    SubformComponent,
     SingleFormComponent,
     SplitFormComponent,
     NameComponent,
@@ -25,9 +24,9 @@ import {AddressComponent} from './address/address.component';
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SubformsModule
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

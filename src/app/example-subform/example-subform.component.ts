@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {useAsSubform} from '../subform/subform-provider';
+import {useAsSubform} from 'ngx-subforms';
 
 
 @Component({
-  selector: 'sf-example-subform',
+  selector: 'app-example-subform',
   templateUrl: './example-subform.component.html',
   ...useAsSubform
 })
