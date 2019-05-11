@@ -2,31 +2,20 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
-import {ExampleSubformComponent} from './example-subform/example-subform.component';
-import {ExampleFormComponent} from './example-form/example-form.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import {SingleFormComponent} from './single-form/single-form.component';
-import {SplitFormComponent} from './split-form/split-form.component';
-import {NameComponent} from './name/name.component';
-import {AddressComponent} from './address/address.component';
-import {SubformsModule} from 'ngx-subforms';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ExampleSubformComponent,
-    ExampleFormComponent,
-    SingleFormComponent,
-    SplitFormComponent,
-    NameComponent,
-    AddressComponent
-
   ],
   imports: [
     BrowserModule,
-    ReactiveFormsModule,
-    SubformsModule
+    RouterModule.forRoot([
+      {path: 'single-form', loadChildren: './single-form-example/single-form-example.module#SingleFormExampleModule'},
+      {path: '**', loadChildren: './subforms-example/subforms-example.module#SubformsExampleModule'}
+    ])
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
