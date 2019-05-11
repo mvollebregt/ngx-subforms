@@ -53,7 +53,7 @@ describe('ExampleFormComponent', () => {
   describe('after touching the form', () => {
 
     it('should have status touched', () => {
-      textInput.dispatchEvent(new Event('focus'));
+      textInput.dispatchEvent(new Event('blur'));
       expect(component.formGroup.touched).toBeTruthy();
     });
 

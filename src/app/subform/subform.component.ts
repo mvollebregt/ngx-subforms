@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ContentChildren, ElementRef, Input, OnChanges, Optional, QueryList, SimpleChanges} from '@angular/core';
 import {FormControlName, FormGroup} from '@angular/forms';
-import {SubformImplementation} from './subform-implementation';
+import {SubformValueAccessor} from './subform-value-accessor';
 
 @Component({
   selector: 'sf-subform',
@@ -13,7 +13,7 @@ export class SubformComponent implements OnChanges, AfterViewInit {
   @ContentChildren(FormControlName, {read: ElementRef}) formControls: QueryList<ElementRef>;
 
   constructor(
-    @Optional() private valueAccessor: SubformImplementation) {
+    @Optional() private valueAccessor: SubformValueAccessor) {
     if (!this.valueAccessor) {
       const error = new Error(
         'SubformProviderError: No value accessor was provided for the subform. ' +

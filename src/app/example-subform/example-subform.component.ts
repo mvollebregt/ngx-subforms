@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {useAsSubform} from '../subform/subform';
+import {useAsSubform} from '../subform/subform-provider';
 
 
 @Component({
