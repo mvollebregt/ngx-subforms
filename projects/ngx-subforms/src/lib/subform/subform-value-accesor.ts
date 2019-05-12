@@ -26,7 +26,6 @@ export class SubformValueAccesor implements ControlValueAccessor, Validator {
       this.formGroup.setValue(this.value);
     }
     this.registerValueChangesWithOnChange();
-    this.formGroup.valueChanges.subscribe(change => console.log('valueChanges', change));
   }
 
   setFormControls(formControls: ElementRef[]) {
@@ -77,7 +76,6 @@ export class SubformValueAccesor implements ControlValueAccessor, Validator {
   }
 
   private registerValueChangesWithOnChange() {
-    console.log('registerValueChangesWithOnChange', this.formGroup, this.onChange);
     if (this.valueChangesSubscription) {
       this.valueChangesSubscription.unsubscribe();
     }
