@@ -2,7 +2,6 @@ import {FormControlName, FormGroup} from '@angular/forms';
 import {ElementRef, QueryList, ViewChildren} from '@angular/core';
 import {SubformValueAccesor} from './subform-value-accesor';
 
-// TODO: https://mariusschulz.com/blog/typescript-2-2-mixin-classes?
 export class Subform {
 
   formGroup: FormGroup;
