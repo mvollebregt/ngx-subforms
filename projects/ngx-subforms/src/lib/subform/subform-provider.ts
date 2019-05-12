@@ -1,9 +1,9 @@
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Renderer2} from '@angular/core';
+import {Renderer2, Type} from '@angular/core';
 import {SubformValueAccesor} from './subform-value-accesor';
+import {Subform} from './subform';
 
-// TODO: type: Type (must extends Subform)
-export function subformProviders(type) {
+export function subformProviders(type: Type<Subform>) {
   return [{
     provide: SubformValueAccesor,
     useClass: SubformValueAccesor,
@@ -19,6 +19,6 @@ export function subformProviders(type) {
   }];
 }
 
-export function useAsSubform(type) {
+export function useAsSubform(type: Type<Subform>) {
   return {providers: subformProviders(type)};
 }
