@@ -40,6 +40,10 @@ runTests(testSetup => {
     expect(component.formGroup.touched).toBeTruthy();
   });
 
+  it('should return an error if fields are required and it was initialized empty', () => {
+    expect(component.formGroup.valid).toBeFalsy();
+  });
+
   it('should return an error if an empty value was given for a required last name field', () => {
     component.formGroup.patchValue({name: {firstName: '', lastName: ''}});
     expect(component.formGroup.valid).toBeFalsy();
