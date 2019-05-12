@@ -4,8 +4,19 @@ import {SubformValueAccessor} from './subform-value-accessor';
 
 export class Subform {
 
-  formGroup: FormGroup;
+  private _formGroup: FormGroup;
   private subformValueAccessor: SubformValueAccessor;
+
+  get formGroup() {
+    return this._formGroup;
+  }
+
+  set formGroup(formGroup: FormGroup) {
+    this._formGroup = formGroup;
+    if (this.subformValueActestcessor) {
+      this.subformValueAccessor.setFormGroup(this.formGroup);
+    }
+  }
 
   @ViewChildren(FormControlName, {read: ElementRef})
   set formControls(formControls: QueryList<ElementRef>) {
