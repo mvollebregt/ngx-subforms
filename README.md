@@ -100,21 +100,23 @@ the ControlValueAccessor interface by yourself.
 
 ## Creating a subform with this library
 
-In the example above, we are going to define a subform NameComponent, combining
+**The documentation below is outdated**
+
+~~In the example above, we are going to define a subform NameComponent, combining
 the first name and the last name fields. You could do exactly the same with the
 remaining fields, and put them in a subform AddresComponent, but we will leave
-that for your own exercise.
+that for your own exercise.~~
 
-To create a subform component, you have to do three things:
+~~To create a subform component, you have to do three things:~~
 
-- wrap your inputs in an &lt;sf-subform&gt; tag;
+~~- wrap your inputs in an &lt;sf-subform&gt; tag;
 - tell angular you'd like to use it as a subform;
-- use the subform component.
+- use the subform component.~~
 
 ### 1. Wrap your inputs in an &lt;sf-subform&gt; tag
 
-The html for your subform component is the same as the original html, but
-wrapped in an &lt;sf-subform&gt; tag.
+~~The html for your subform component is the same as the original html, but
+wrapped in an &lt;sf-subform&gt; tag.~~
 
 ```html
 <sf-subform [formGroup]="name">
@@ -123,8 +125,8 @@ wrapped in an &lt;sf-subform&gt; tag.
 </sf-subform>
 ```
 
-In the TypeScript code for your component, you define just the firstName and
-lastName fields:
+~~In the TypeScript code for your component, you define just the firstName and
+lastName fields:~~
 
 ```typescript
     this.name = this.formBuilder.group({
@@ -135,7 +137,7 @@ lastName fields:
 
 ### 2. Tell your inputs you'd like to use it as a subform
 
-Add ...useAsSubform to your @Component decorator:
+~~Add ...useAsSubform to your @Component decorator:~~
 
 ```typescript
 @Component({
@@ -147,8 +149,8 @@ Add ...useAsSubform to your @Component decorator:
 
 ### 3. Use the subform component
 
-You can now use the subform in your main form, without having to define the 
-fields of the subform in the main form:
+~~You can now use the subform in your main form, without having to define the 
+fields of the subform in the main form:~~
 
 ```typescript
 @Component({
