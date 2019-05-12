@@ -9,7 +9,7 @@ import {useAsSubform} from 'ngx-subforms';
 })
 export class NameSubformComponent  {
 
-  private name: FormGroup;
+  name: FormGroup;
 
   constructor(private formBuilder: FormBuilder) {
     this.name = this.formBuilder.group({
