@@ -1,11 +1,11 @@
 import {FormControlName, FormGroup} from '@angular/forms';
 import {ElementRef, QueryList, ViewChildren} from '@angular/core';
-import {SubformValueAccesor} from './subform-value-accesor';
+import {SubformValueAccessor} from './subform-value-accessor';
 
 export class Subform {
 
   formGroup: FormGroup;
-  private subformValueAccessor: SubformValueAccesor;
+  private subformValueAccessor: SubformValueAccessor;
 
   @ViewChildren(FormControlName, {read: ElementRef})
   set formControls(formControls: QueryList<ElementRef>) {
@@ -17,7 +17,7 @@ export class Subform {
     }
   }
 
-  registerSubformValueAccessor(subformValueAccessor: SubformValueAccesor) {
+  registerSubformValueAccessor(subformValueAccessor: SubformValueAccessor) {
     this.subformValueAccessor = subformValueAccessor;
     subformValueAccessor.setFormGroup(this.formGroup);
   }

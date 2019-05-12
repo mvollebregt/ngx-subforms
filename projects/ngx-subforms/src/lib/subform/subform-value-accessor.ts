@@ -3,7 +3,7 @@ import {Subform} from './subform';
 import {ElementRef, Renderer2} from '@angular/core';
 import {Subscription} from 'rxjs';
 
-export class SubformValueAccesor implements ControlValueAccessor, Validator {
+export class SubformValueAccessor implements ControlValueAccessor, Validator {
 
   constructor(subform: Subform, private renderer: Renderer2) {
     subform.registerSubformValueAccessor(this);
