@@ -1,18 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, Renderer2} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {useAsSubform} from 'ngx-subforms';
+import {useAsSubform, Subform} from 'ngx-subforms';
 
 @Component({
   selector: 'app-address-subform',
   templateUrl: './address-subform.component.html',
-  ...useAsSubform
+  ...useAsSubform(AddressSubformComponent)
 })
-export class AddressSubformComponent {
+export class AddressSubformComponent extends Subform {
 
-  address: FormGroup;
-
-  constructor(private formBuilder: FormBuilder) {
-    this.address = this.formBuilder.group({
+  constructor(private formBuilder: FormBuilder, renderer: Renderer2) {
+    super(renderer);
+    this.formGroup = this.formBuilder.group({
       street: [],
       number: [],
       zipCode: [],

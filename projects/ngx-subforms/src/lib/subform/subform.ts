@@ -1,26 +1,44 @@
-import {AbstractControl, ControlValueAccessor, FormGroup, ValidationErrors, Validator} from '@angular/forms';
+import {AbstractControl, ControlValueAccessor, FormControlName, FormGroup, ValidationErrors, Validator} from '@angular/forms';
 import {Subscription} from 'rxjs';
-import {ElementRef, Renderer2} from '@angular/core';
+import {ContentChildren, ElementRef, QueryList, Renderer2, ViewChildren} from '@angular/core';
 
-export class SubformValueAccessor implements ControlValueAccessor, Validator {
+// TODO: https://mariusschulz.com/blog/typescript-2-2-mixin-classes?
+export class Subform implements ControlValueAccessor, Validator {
 
-  private formGroup: FormGroup;
+  private _formGroup: FormGroup;
+
   private onChange: any;
   private onTouched: any;
+  private onValidatorChange: () => void;
+
   private valueChangesSubscription: Subscription;
+  private control: AbstractControl;
 
-  constructor(private renderer: Renderer2) {
+  private value: any;
+
+  get formGroup(): FormGroup {
+    return this._formGroup;
   }
 
-  setFormGroup(formGroup: FormGroup) {
-    this.formGroup = formGroup;
+  set formGroup(value: FormGroup) {
+    this._formGroup = value;
+    if (this.value) {
+      this.formGroup.setValue(this.value);
+    }
     this.registerValueChangesWithOnChange();
+    this.formGroup.valueChanges.subscribe(change => console.log('valueChanges', change));
   }
 
-  setFormControls(formControls: ElementRef[]) {
+  @ViewChildren(FormControlName, {read: ElementRef})
+  set formControls(formControls: QueryList<ElementRef>) {
+    console.log('set formControls', formControls.toArray());
     formControls.forEach(control => {
       this.renderer.listen(control.nativeElement, 'blur', this.onTouched);
     });
+  }
+
+  // TODO: deze naar service verplaatsen?
+  constructor(private renderer: Renderer2) {
   }
 
   registerOnChange(fn: any): void {
@@ -37,16 +55,19 @@ export class SubformValueAccessor implements ControlValueAccessor, Validator {
 
   writeValue(obj: any): void {
     // TODO: what if formGroup is not initialized yet?
-    if (obj) {
+    this.value = obj;
+    if (this.formGroup && obj) {
       // TODO: what should happen if !obj?
       this.formGroup.setValue(obj);
     }
   }
 
   registerOnValidatorChange(fn: () => void): void {
+    this.onValidatorChange = fn;
   }
 
   validate(control: AbstractControl): ValidationErrors | null {
+    this.control = control;
     const allErrors = {};
     if (this.formGroup) {
       // TODO: recursive?
@@ -57,11 +78,12 @@ export class SubformValueAccessor implements ControlValueAccessor, Validator {
         }
       }
     }
-    // TODO: what if !this.formGroup?
+    // TODO: what if !this.formGroup? use function parameter "control"?
     return !this.formGroup || this.formGroup.valid ? null : {invalidForm: allErrors};
   }
 
   private registerValueChangesWithOnChange() {
+    console.log('registerValueChangesWithOnChange', this.formGroup, this.onChange);
     if (this.valueChangesSubscription) {
       this.valueChangesSubscription.unsubscribe();
     }

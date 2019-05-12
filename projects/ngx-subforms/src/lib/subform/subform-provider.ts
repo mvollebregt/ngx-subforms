@@ -1,21 +1,19 @@
 import {NG_VALIDATORS, NG_VALUE_ACCESSOR} from '@angular/forms';
-import {Provider, Renderer2} from '@angular/core';
-import {SubformValueAccessor} from './subform-value-accessor';
+import {forwardRef} from '@angular/core';
 
-export const subformProvider: Provider = [{
-  provide: SubformValueAccessor,
-  useClass: SubformValueAccessor,
-  deps: [Renderer2],
-}, {
-  provide: NG_VALUE_ACCESSOR,
-  useExisting: SubformValueAccessor,
-  multi: true
-},
-  {
-    provide: NG_VALIDATORS,
-    useExisting: SubformValueAccessor,
+// TODO: type: Type
+export function subformProviders(type) {
+  return [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => type),
     multi: true
-  }
-];
+  }, {
+    provide: NG_VALIDATORS,
+    useExisting: forwardRef(() => type),
+    multi: true
+  }];
+}
 
-export const useAsSubform = {providers: [subformProvider]};
+export function useAsSubform(type) {
+  return {providers: subformProviders(type)};
+}

@@ -3,10 +3,9 @@ import { CommonModule } from '@angular/common';
 import {SingleFormComponent} from './single-form/single-form.component';
 import {RouterModule} from '@angular/router';
 import {ReactiveFormsModule} from '@angular/forms';
-import {SubformsModule} from 'ngx-subforms';
 
 export const singleFormExampleDeclarations = [SingleFormComponent];
-export const singleFormExampleImports = [CommonModule, ReactiveFormsModule, SubformsModule];
+export const singleFormExampleImports = [CommonModule, ReactiveFormsModule];
 
 @NgModule({
   declarations: singleFormExampleDeclarations,

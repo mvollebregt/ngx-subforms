@@ -1,9 +1,7 @@
-<sf-subform [formGroup]="address">
-  <fieldset>
+<fieldset [formGroup]="formGroup">
     <input formControlName="street" placeholder="Street">
     <input formControlName="number" placeholder="Number">
     <input formControlName="zipCode" placeholder="Zip code">
     <input formControlName="city" placeholder="City">
     <input formControlName="country" placeholder="Country">
-  </fieldset>
-</sf-subform>
+</fieldset>
