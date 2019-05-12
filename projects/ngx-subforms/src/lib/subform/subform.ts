@@ -9,7 +9,12 @@ export class Subform {
 
   @ViewChildren(FormControlName, {read: ElementRef})
   set formControls(formControls: QueryList<ElementRef>) {
-    this.subformValueAccessor.setFormControls(formControls.toArray());
+    if (!this.subformValueAccessor) {
+      console.error(
+        'No value accessor for the subform was provided. Did you forget to add ...useAsSubform(YourSubform) to your @Component decorator?');
+    } else {
+      this.subformValueAccessor.setFormControls(formControls.toArray());
+    }
   }
 
   registerSubformValueAccessor(subformValueAccessor: SubformValueAccesor) {
